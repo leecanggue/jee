@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+.tableTag{
+	width: 500px;
+	height: 700px;
+}
+.tableTag thead tr th{
+	border: 1px solid GRAY;
+	height: 50px;
+}
+.tableTag tbody tr td{
+	border: 1px solid GRAY;
+}
+table {
+    border-collapse: collapse;   
+    border-spacing: 0
+}

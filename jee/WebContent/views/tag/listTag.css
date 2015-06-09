@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+body{
+	font-family: "맑은 고딕";
+	font-size: 0.75em;
+	color: #333;
+	line-height: 1.8em;
+} 
+ul.multi{	/* .multi라고 주는것과 의미상 동일합니다. 다만 가독성 유지 보수에 good choice */
+	margin: 0;
+	padding: 0;	/* 마진과 패딩을 초기화 해준다*/
+}
+ul.multi li{
+	margin: 0;
+	padding: 0 0 0 15px;
+	list-style: none; /* 세로로 출력되는 것을 none 시킨다. */
+	background-image: url("../../images/bluePoint.png");
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+ul.multi ul li{
+	list-style: decimal;
+	/*리스트 타입을 숫자로 지정합니다.*/
+	margin: 0 0 0 5px;
+	padding: 0;
+	background-image: none;
+	
+}
+ul.multi ul ul li{ 
+	margin: 0 0 0 -20px;
+	padding: 0 0 0 15px;
+	list-style: none;
+	background-image: url("../../images/bluePoint.png");
+	background-repeat: no-repeat;
+	/* 리스트 타입을 none 으로 지정하여 list-type 이 상속되는 것으 막는다. */
+}
