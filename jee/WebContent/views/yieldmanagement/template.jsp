@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	@import url("template.css");
+	@import url("<%=request.getContextPath()%>/css/template.css");
 </style>
 </head>
 <body>

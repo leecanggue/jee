@@ -6,7 +6,7 @@
 	<meta charset="UTF-8" />
 	<title>Right Content Frame</title>
 	<style>
-		@import url("rightContent.css");
+		@import url("<%=request.getContextPath()%>/css/rightContent.css");
 	</style>
 </head>
 <body>

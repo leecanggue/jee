@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-/* @IMPORT url("../common/common.css"); */
+/* @IMPORT url("common.css"); */
 /* 현재 상태에서../ 의 위치는 views 폴더를 가리킨다. */
 .listTag{
 	width: 300px;

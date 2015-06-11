@@ -6,7 +6,7 @@
 	<meta charset="UTF-8" />
 	<title>테이블 태그</title>
 	<style>
-		@import url("tableTag.css");
+		@import url("<%=request.getContextPath()%>/css/tableTag.css");
 	</style>
 </head>
 <body>

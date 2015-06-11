@@ -14,7 +14,7 @@ ul.multi li{
 	margin: 0;
 	padding: 0 0 0 15px;
 	list-style: none; /* 세로로 출력되는 것을 none 시킨다. */
-	background-image: url("../../images/bluePoint.png");
+	background-image: url("../images/bluePoint.png");
 	background-repeat: no-repeat;
 	background-position: left center;
 }

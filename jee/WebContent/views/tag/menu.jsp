@@ -6,7 +6,7 @@
 	<meta charset="UTF-8" />
 	<title>메뉴</title>
 	<style>
-		@import url("menu.css");
+		@import url("<%=request.getContextPath()%>/css/menu.css");
 	</style>
 </head>
 <body>

@@ -6,7 +6,7 @@
 	<meta charset="UTF-8" />
 	<title>리스트 태그 2</title>
 	<style>
-		@import url("listTag2.css");
+		@import url("<%=request.getContextPath()%>/css/listTag2.css");
 	</style>
 </head>
 <body>
