@@ -61,15 +61,6 @@ subString()같은 메소드를 활용하면 쉽게 얻을 수 있읅 것이다.
 	      
 	            try {
 	 
-	               //몇호실에서 퇴실
-	                //floor = this.inputCheck(floor, 1, 3);
-	                if (floor == 0){}
-	            
-	              //몇호실에서 퇴실
-	               // room = this.inputCheck(row, 1, 5);
-	                if (row == 0){}
-	               
-	 
 	                if (seat[floor - 1][row - 1] == null) { // 방에 이름이 없다면..
 	                	msg ="그 방은 이미 빈방입니다"; // 이미 빈방입니다 메세지
 	                  

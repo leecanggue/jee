@@ -38,21 +38,25 @@ public class ReservationController extends HttpServlet {
 		String path = request.getServletPath();
         switch (path) {
         case "/reservation/checkIn.do":
+        	
         	floor = Integer.parseInt(request.getParameter("floor"));
         	row=Integer.parseInt(request.getParameter("row"));
         	id = request.getParameter("id");
         	msg=service.checkIn(floor,row,id);
         	seat = service.checkIn();
         	request.setAttribute("seat",seat);
+        	
         	request.setAttribute("msg",msg);
         	
         	RequestDispatcher dispatcher = request.getRequestDispatcher("/views/model2/reservationForm.jsp");
            	dispatcher.forward(request, response);
             break; // 체크인
         case "/reservation/checkOut.do":
-        	msg=service.checkOut(floor,row,id);
-        	request.setAttribute("msg", msg);
-        	   RequestDispatcher dispatcher1 = request.getRequestDispatcher("/views/model2/reservationForm.jsp");
+        	String msg2=service.checkOut(floor,row,id);
+        	seat[floor][row]=null;
+        	request.setAttribute("msg", msg2);
+        	request.setAttribute("seat",seat);
+        	RequestDispatcher dispatcher1 = request.getRequestDispatcher("/views/model2/reservationForm.jsp");
            	dispatcher1.forward(request, response);
             break; // 체크아웃
             
@@ -60,7 +64,7 @@ public class ReservationController extends HttpServlet {
         	System.out.println("2");
         	String[][]seat =service.showStatus();
         	
-        	   RequestDispatcher dispatcher2 = request.getRequestDispatcher("/views/model2/reservation.jsp");
+        	RequestDispatcher dispatcher2 = request.getRequestDispatcher("/views/model2/reservation.jsp");
            	dispatcher2.forward(request, response);
         	break;
         }

@@ -8,14 +8,24 @@
 	<style>
 		@import url("../../css/model2/kaup.css");
 	</style>
-	<script>
+	<script type="text/javascript">
+	function searchId(){
+		window.open("<%=request.getContextPath()%>/member/searchIdForm.do",
+		"searchId",
+		"scrollbars,toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=yes,width=600,height=500,top=200,left=400");
+	}
+	function searchPass(){
+		window.open("<%=request.getContextPath()%>/member/searchPassForm.do",
+		"searchPass",
+		"scrollbars,toolbar=no,location=no,directories=no,status=no,menubar=yes,resizable=yes,width=600,height=500,top=200,left=400");
+	}
 	function join(){
 	
-		document.frmjoin.submit();
+		document.frmJoin.submit();
 	}
 		function login(){
 			
-			document.frmLoin.submit();
+			document.frmLogin.submit();
 		}
 	</script>
 </head>
@@ -58,8 +68,8 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				<!-- 	<input type="submit" value="전송" /> -->
-					<img src="<%=request.getContextPath() %>/images/btnJoin.jpg" style="cursor: pointer" alt="" onclick="return join()" />
+				<input type="submit" value="전송" />
+					<img src="<%=request.getContextPath() %>/images/btnJoin.jpg" style="cursor: pointer" alt="" onclick="join()" />
 				</td>
 			</tr>
 		</table>
@@ -85,11 +95,19 @@
 			<tr>
 				<td colspan="2">
 					<!-- <input type="submit" value="전송" /> -->
-					<img src="<%=request.getContextPath() %>/images/btnLogin.png" style="cursor: pointer" alt="" onclick="return login()" />
+					<img src="<%=request.getContextPath() %>/images/btnLogin.png" style="cursor: pointer" alt="" onclick="login()" />
 				</td>
 			</tr>
 		</table>
 		</fieldset>
+		<div>
+			<span>
+				<a href="#" onclick="searchId()">아이디찾기</a>
+			</span>
+			<span>
+				<a href="#" onclick="searchPass()">비번찾기</a>
+			</span>
+		</div>
 	</form>
 </body>
 </html>

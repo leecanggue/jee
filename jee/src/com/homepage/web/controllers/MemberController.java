@@ -18,12 +18,29 @@ import com.homepage.web.services.MemberService;
  * @ Author : ;
  * @ Story : 회원가입과 로그인 담당하는 컨트롤러
  */
-@WebServlet({"/model2/join.do", "/model2/login.do"})
+@WebServlet({"/model2/join.do", "/model2/login.do",
+	"/member/searchIdForm.do","/member/searchPassForm.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService service = new MemberServiceImpl();
 	MemberBean bean = new MemberBean();
-    
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    		throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		switch (request.getServletPath()) {
+		case "/member/searchIdForm.do" :
+			RequestDispatcher dispatcher3 = request.getRequestDispatcher("/views/model2/searchIdForm.jsp");
+			dispatcher3.forward(request, response);
+			break;
+		case "/member/searchPassForm.do":
+			RequestDispatcher dispatcher4 =request.getRequestDispatcher("/views/model2/searchPassForm.jsp");
+			dispatcher4.forward(request, response);
+		default:
+			break;
+		}
+    }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("1");
 		request.setCharacterEncoding("UTF-8");
@@ -65,8 +82,10 @@ public class MemberController extends HttpServlet {
 			System.out.println("1");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/model2/loginFail.jsp");
 			dispatcher.forward(request, response);
-		}
+		
 		break;
+		}
+		
 		default:
 			break;
 		}
