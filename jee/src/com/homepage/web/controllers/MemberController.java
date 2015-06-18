@@ -53,16 +53,16 @@ public class MemberController extends HttpServlet {
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		String age = request.getParameter("age");
+		int age = Integer.parseInt(request.getParameter("age"));
 		String address = request.getParameter("address");
 		bean.setId(id);
 		bean.setPassword(password);
-		bean.setAge(Integer.parseInt(age));
+		bean.setAge(age);
 		bean.setAddr(address);
 		bean.setName(name);
 		
-		int ageI = Integer.parseInt(age);
-		service.join(id, password, name, ageI, address);
+		
+		service.join(id, password, name, age, address);
 		RequestDispatcher dispatcher1 = request.getRequestDispatcher("/views/model2/memberForm.jsp");
 		dispatcher1.forward(request, response);
 		break;
