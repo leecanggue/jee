@@ -6,23 +6,7 @@
  <meta charset="UTF-8" />
  <title>회원가입 창</title>
  <script type="text/javascript">
- var nochk = function (){
-	   alert("동의하지 않으면 가입하실 수 없습니다");
-	 
-}
-
-var agreeChk = function(){
- var req = document.form.req.checked;
- var num = 0;
- if(req == true){
-  num = 1;
- }
- if(num == 1){
-  document.form.submit();
- }else{
-  alert("개인정보 약관에 동의하셔야 합니다.");
- }
-}
+ 
 
  </script>
 </head>
@@ -93,7 +77,8 @@ var agreeChk = function(){
 
  </table>
 </form>
-<script type="/text/javascript" src="<%=request.getContextPath() %>/js/agree.js"></script>
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/agree.js"></script>
 </body>
 
 </html>
