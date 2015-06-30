@@ -1,15 +1,30 @@
 package com.homepage.web.serviceimpls;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+
 
 
 
 import com.homepage.web.beans.MemberBean;
 import com.homepage.web.services.MemberService;
+import com.homepage.web.util.MemberDAO;
 
 public class MemberServiceImpl implements MemberService{
-
+	/*
+	 * DAO 가 싱글톤 패턴으로 단 하나의 인스턴스만 리턴한다면
+	 * 그것을 사용하는 서비스도 싱글톤으로 구성해야한다.
+	 * 그러지 않으면 다중 접속상태에서 하나의 인스턴스만 사용하게되어
+	 * 접속불량 현상이 발생한다.
+	 * */
+	private static MemberService service = new MemberServiceImpl();
+	private MemberServiceImpl(){}
+	public static MemberServiceImpl getInstance(){
+		return (MemberServiceImpl) service;
+	}
+	
 	/*
 	 * 회원가입 기능을 하는 메소드
 	 * HashMap 을 해야 id 값을 가지고 password 를 호출하겠구나..
@@ -18,34 +33,8 @@ public class MemberServiceImpl implements MemberService{
 	Map<String,Object> map = new HashMap<String,Object>();
 	
 	@Override
-	public void join(String id, String password, String name, int age,
-			String addr) {
-		/*
-		 * 이 패턴은 DB 에 저장하는 패턴과 일치한다.
-		 * 즉, 값을 활용하면서 오염되거나 변질될 수 있기에
-		 * 가장 먼저 순수값을 DB 에 저장하고 본다.
-		 * */
-		bean.setAddr(addr);
-		bean.setAge(age);
-		bean.setId(id);
-		bean.setName(name);
-		bean.setPassword(password);
-		/*
-		 * 1. 첫번째 에러 유형
-		 * map.put(vo.getId(),vo.getPassword());
-		 * */
-		map.put("id", bean.getId());
-		map.put("password", bean.getPassword());
-		map.put("name", bean.getName());
-		// 키와 밸류 패턴에서 밸류값을 String 으로 통일시키려고
-		// int 타입으로 들어온 age 를 String 타입으로 변환하였다.
-		map.put("age", String.valueOf(bean.getAge()));
-		map.put("addr", bean.getAddr());
-		/*
-		 * 2. 두번째 에러 유형
-		 * map.put("age",vo.getAge());
-		 * */
-		
+	public int join(MemberBean bean) {
+		return MemberDAO.getInstance().join(bean);
 	}
 	/*
 	 * 회원가입 후 로그인 기능을 하는 메소드이후에
@@ -69,6 +58,11 @@ public class MemberServiceImpl implements MemberService{
 			System.out.println("비번이 다릅니다.다시 입력하세요.");
 		}
 		
+	}
+	@Override
+	public List<MemberBean> getList() {
+		MemberDAO dao = MemberDAO.getInstance();
+		return dao.getList();
 	}
 
 }

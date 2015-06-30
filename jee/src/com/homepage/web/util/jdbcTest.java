@@ -16,7 +16,7 @@ public class jdbcTest {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		MemberBean bean = new MemberBean();
+		MemberBean bean =null;
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "system";
 		String pass = "oracle";
@@ -30,6 +30,7 @@ public class jdbcTest {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("select * from member");
 			while(rs.next()){
+				bean= new MemberBean();
 				bean.setId(rs.getString("MEMBERID"));
 				bean.setAge(rs.getString("AGE"));
 				bean.setPassword(rs.getString("PASSWORD"));

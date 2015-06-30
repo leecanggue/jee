@@ -1,6 +1,8 @@
 package com.homepage.web.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,10 +21,11 @@ import com.homepage.web.services.MemberService;
  * @ Story : 회원가입과 로그인 담당하는 컨트롤러
  */
 @WebServlet({"/model2/join.do", "/model2/login.do",
-	"/member/searchIdForm.do","/member/searchPassForm.do"})
+	"/member/searchIdForm.do","/member/searchPassForm.do",
+	"/member/searchAllMember.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	MemberService service = new MemberServiceImpl();
+	MemberService service = MemberServiceImpl.getInstance();
 	MemberBean bean = new MemberBean();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,6 +40,14 @@ public class MemberController extends HttpServlet {
 		case "/member/searchPassForm.do":
 			RequestDispatcher dispatcher4 =request.getRequestDispatcher("/views/model2/searchPassForm.jsp");
 			dispatcher4.forward(request, response);
+			break;
+		case "/member/searchAllMember.do":
+			List<MemberBean> list = new ArrayList<MemberBean>();
+			list = service.getList();
+			request.setAttribute("memberlist", list);
+			RequestDispatcher dispatcher5 =request.getRequestDispatcher("/views/model2/memberList.jsp");
+			dispatcher5.forward(request, response);
+			break;
 		default:
 			break;
 		}
@@ -53,17 +64,22 @@ public class MemberController extends HttpServlet {
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		int age = Integer.parseInt(request.getParameter("age"));
-		String address = request.getParameter("address");
+		String age = request.getParameter("age");
+		String email = request.getParameter("address");
 		bean.setId(id);
 		bean.setPassword(password);
 		bean.setAge(age);
-		bean.setAddr(address);
+		bean.setAddr(email);
 		bean.setName(name);
-		
-		
-		service.join(id, password, name, age, address);
-		RequestDispatcher dispatcher1 = request.getRequestDispatcher("/views/model2/memberForm.jsp");
+		int result = service.join(bean);
+		String joinMsg = "";
+		if(result!=0){
+			joinMsg = name + " 님 환영합니다.";
+		}else{
+			joinMsg = "회원가입에 실패했습니다.";
+		}
+		request.setAttribute("msg", joinMsg);
+		RequestDispatcher dispatcher1 = request.getRequestDispatcher("/views/model2/main.jsp");
 		dispatcher1.forward(request, response);
 		break;
 		case "/model2/login.do":

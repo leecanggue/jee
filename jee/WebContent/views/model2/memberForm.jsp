@@ -42,9 +42,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<td>이메일</td>
 				<td>
-					<input type="text" id="address" name="address" placeholder="주소를 입력하세요" />
+					<input type="text" id="email" name="address" placeholder="이메일을 입력하세요" />
 				</td>
 			</tr>
 			<tr>
