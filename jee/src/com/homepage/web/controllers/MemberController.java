@@ -65,11 +65,11 @@ public class MemberController extends HttpServlet {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String age = request.getParameter("age");
-		String email = request.getParameter("address");
+		String email = request.getParameter("email");
 		bean.setId(id);
 		bean.setPassword(password);
 		bean.setAge(age);
-		bean.setAddr(email);
+		bean.setEmail(email);
 		bean.setName(name);
 		int result = service.join(bean);
 		String joinMsg = "";
